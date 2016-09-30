@@ -1,0 +1,254 @@
+/*********************************
+    Global Styles
+**********************************/
+
+// Global Font
+$rootFontSize: 11px;
+// Color Palette
+$grey: #28282F;
+$darkGrey: #17171C;
+$darkerGrey: #0b0c0e;
+$green: #42B3B4;
+$whitish: #ECEDF8;
+
+/**********************************
+    General Styles
+**********************************/
+
+html{
+    font-size: $rootFontSize;
+}
+
+body{
+    font-size: 1rem;
+}
+
+$noPadnoMar: a, p, h1, h2, h3, img;
+
+@each $item in $noPadnoMar {
+    #{$item} {
+        padding: 0px;
+        margin: 0px;
+    }
+}
+
+a{
+    color: inherit;
+    text-decoration: none;
+}
+
+.to-left{
+    float: left;
+}
+
+.to-right{
+    float: right;
+}
+
+@mixin arrow-right($width, $color) {
+    display: inline-block;
+    width: 0;
+    height: 0;
+
+    border-top: $width solid transparent;
+    border-bottom: $width solid transparent;
+
+    border-left: $width solid $color;
+}
+
+@mixin arrow-down($width, $color) {
+    display: inline-block;
+    width: 0;
+    height: 0;
+
+    border-left: $width solid transparent;
+    border-right: $width solid transparent;
+
+    border-top: $width solid $color;
+}
+
+/**********************************
+    Layout
+**********************************/
+
+// table-like layout
+html{
+    display: table;
+    width: 100%;
+    height: 100%;
+    body{
+        display: table-row;
+        width: 100%;
+        height: 100%;
+        > *{
+            display: table-cell;
+            height: 100%;
+
+            vertical-align: top;
+        }
+    }
+}
+
+// header
+$headerHeight: 60px;
+header{
+    height: $headerHeight;
+    line-height: $headerHeight;
+    img{
+        height: $headerHeight;
+    }
+}
+
+/*
+    Sidebar Navigation
+*/
+
+$sidebarWidth: 240px;
+$gutterWidth: 20px;
+nav#sidebar-nav{
+    header{
+        width: $sidebarWidth;
+    }
+
+    #sidebar-container{
+        ul{
+            list-style: none;
+            margin: 0px;
+            padding: 0px;
+            li{
+                position: relative;
+
+                display: inline-block;
+                width: 100%;
+                height: $headerHeight;
+                line-height: $headerHeight;
+
+                padding: 0 $gutterWidth;
+                box-sizing: border-box;
+            }
+            > li.expanded{
+                height: auto;
+            }
+        }
+    }
+}
+
+/*
+    Content
+*/
+
+$gutterWidth: 45px;
+div#content{
+    width: 100%;
+    background: $whitish;
+
+    .apply-gutter{
+        padding: 0 $gutterWidth;
+    }
+}
+
+/**********************************
+    Styles
+**********************************/
+
+/*
+    Sidebar Navigation
+*/
+
+nav#sidebar-nav{
+    background: $darkGrey;
+    header{
+        background: $grey;
+    }
+}
+
+/*
+    Content
+*/
+
+div#content{
+    header{
+        color: white;
+        background: $green;
+
+        #site-nav{
+            position: relative;
+            left: -$gutterWidth;
+
+            padding-left: $gutterWidth - 20;
+            padding-right: $gutterWidth - 20;
+            background: #4cbebe;
+
+            a{
+                display: inline-block;
+                float: left;
+
+                font-weight: bold;
+
+                padding: 0 20px;
+            }
+        }
+    }
+}
+
+/*
+    Sidebar Navigation
+*/
+
+$sidebarColor: #717171;
+nav#sidebar-nav{
+    header{
+        width: $sidebarWidth;
+    }
+
+    #sidebar-container{
+        ul{
+            font-weight: bold;
+            text-transform: uppercase;
+            li{
+                color: $sidebarColor;
+                border-style: solid;
+                border-color: $darkerGrey;
+                border-width: 0 0 1px 0;
+                span.arrow-right{
+                    @include arrow-right(5px, $sidebarColor);
+                }
+            }
+            li.expanded{
+                background: $darkerGrey;
+                color: white;
+                span.arrow-down{
+                    @include arrow-down(5px, white);
+                }
+                > li{
+                    color: white;
+                    border: none;
+                }
+            }
+            li:hover{
+                color: white;
+                span.arrow-right{
+                    @include arrow-right(5px, white);
+                }
+            }
+        }
+    }
+}
+
+/*
+    Page-title
+*/
+
+#page-title{
+    line-height: 8rem;
+    background: $grey;
+
+    h2{
+        color: white;
+        span{
+            font-weight: lighter;
+            font-size: 0.86em;
+            margin: 0 10px;
+        }
+    }
+}
