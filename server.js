@@ -1,15 +1,11 @@
 var express = require("express");
 var app = express();
-
-var middlewares = {
-    logger: function(req, res, next){
-        console.log("Request at " + (new Date()).toString() + ": " + req.method + ' ' + req.originalUrl);
-        next();
-    }
-}
+var middlewares = require("./middlewares.js");
 
 app.use(middlewares.logger);
 
 app.use(express.static(__dirname + '/public'));
 
-app.listen(3000);
+app.listen(3000, function(){
+    console.log("server started");
+});
