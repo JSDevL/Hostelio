@@ -3,6 +3,16 @@ var uglify = require("gulp-uglify");
 var cleanCSS = require('gulp-clean-css');
 var sass = require('gulp-sass');
 var livereload = require("gulp-livereload");
+var concat = require("gulp-concat");
+
+// tasks for vendor script files
+gulp.task("vendorScripts", function(){
+    console.log("happening");
+    gulp.src('public/vendor/js/*.js')
+        //.pipe(concat('allVendor.js'))
+        //.pipe(uglify())
+        .pipe(gulp.dest('public/build/js/'));
+});
 
 // tasks for SCSS files
 gulp.task("scss", function(){
@@ -15,7 +25,7 @@ gulp.task("scss", function(){
 // tasks for js files
 gulp.task("scripts", function(){
     gulp.src("public/js/**/*.js")
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(gulp.dest("public/build/js/"));
 });
 
@@ -39,6 +49,7 @@ gulp.task('default', function(){
 });
 
 gulp.task("build", function(){
+    gulp.start("vendorScripts");
     gulp.start("scripts");
     gulp.start("scss");
 });

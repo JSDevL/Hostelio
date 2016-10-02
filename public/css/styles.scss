@@ -67,6 +67,30 @@ a{
     border-top: $width solid $color;
 }
 
+button{
+    display: inline-block;
+    background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+
+    color: white;
+    background: $green;
+
+    padding: 10px 20px;
+
+    text-transform: uppercase;
+    font-weight: bold;
+
+    &.btn-black{
+        background: $grey;
+    }
+
+    &:disabled{
+        background: #d43f3a;
+    }
+}
+
 /**********************************
     Layout
 **********************************/
@@ -144,6 +168,43 @@ div#content{
 
     .apply-gutter{
         padding: 0 $gutterWidth;
+    }
+}
+
+.double-row{
+    display: table;
+    width: 100%;
+
+    border-style: solid;
+    border-color: #e0e0e0;
+    border-width: 2px 0;
+
+    .row{
+        display: table-row;
+        width: 100%;
+
+        > * {
+            display: table-cell;
+            vertical-align: top;
+
+            box-sizing: border-box;
+        }
+
+        > :nth-child(1){
+            width: 400px;
+
+            border-style: solid;
+            border-color: #e0e0e0;
+            border-width: 0 2px 0 0;
+        }
+
+        > :nth-child(2){
+            width: 100%;
+        }
+
+        .content-cell{
+            padding: 2rem $gutterWidth;
+        }
     }
 }
 
@@ -249,6 +310,140 @@ nav#sidebar-nav{
             font-weight: lighter;
             font-size: 0.86em;
             margin: 0 10px;
+        }
+    }
+}
+
+/****************************************************************
+    From login page
+****************************************************************/
+
+/*
+    app banner
+*/
+
+#app-banner{
+    position: relative;
+    background-image: url('/img/hostel.png');
+    background-size: cover;
+    background-position: center;
+
+    color: white;
+    font-size: 2rem;
+    font-weight: 100;
+
+    &:after{
+        content: '';
+        position: absolute;
+        top: 0px;
+        left: 0px;
+
+        display: block;
+        width: 100%;
+        height: 100%;
+
+        background: rgba(0, 0, 0, 0.7);
+    }
+
+    h1{
+        position: relative;
+        z-index: 1;
+        padding: $gutterWidth 0;
+
+        span{
+            display: block;
+            font-weight: lighter;
+            font-size: 1.5rem;
+        }
+    }
+}
+
+/*
+    form
+*/
+
+.cell-title{
+    background: white;
+    line-height: 6rem;
+
+    border-style: solid;
+    border-color: #e0e0e0;
+    border-width: 0 0 2px 0;
+}
+
+.form{
+    float: left;
+
+    label{
+        display: block;
+        font-weight: bold;
+
+        line-height: 3rem;
+    }
+
+    input, textarea, select{
+        max-width: 100%;
+        width: 100%;
+        font-size: 1.2rem;
+        line-height: 2rem;
+        height: 2rem;
+
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+
+    .btn-group{
+        padding: 2rem 0;
+    }
+}
+
+/*
+    announcements
+*/
+
+.announcement-item{
+    border-style: solid;
+    border-color: #e0e0e0;
+    border-width: 0 0 2px 0;
+    padding-bottom: 1rem;
+}
+
+/****************************************************************
+    From Application page
+****************************************************************/
+
+#application-form-cell{
+    width: 100%;
+    border: none;
+
+    form{
+        -webkit-column-count: 3; /* Chrome, Safari, Opera */
+        -moz-column-count: 3; /* Firefox */
+        column-count: 3;
+
+        -webkit-column-gap: $gutterWidth*2; /* Chrome, Safari, Opera */
+        -moz-column-gap: $gutterWidth*2; /* Firefox */
+        column-gap: $gutterWidth*2;
+
+        -webkit-column-rule-style: solid; /* Chrome, Safari, Opera */
+        -moz-column-rule-style: solid; /* Firefox */
+        column-rule-style: solid;
+
+        -webkit-column-rule-width: 2px; /* Chrome, Safari, Opera */
+        -moz-column-rule-width: 2px; /* Firefox */
+        column-rule-width: 2px;
+
+        -webkit-column-rule-color: #e0e0e0; /* Chrome, Safari, Opera */
+        -moz-column-rule-color: #e0e0e0; /* Firefox */
+        column-rule-color: #e0e0e0;
+
+        > div{
+            display: inline-block;
+            width: 100%;
+
+            input[type="checkbox"]{
+                width: auto;
+            }
         }
     }
 }
