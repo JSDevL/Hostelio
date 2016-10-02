@@ -1,242 +1,256 @@
 <div>
+    
+    <script type="text/ng-template" id="error-messages">
+        <div ng-message="required">*cannot be blank*</div>
+        <div ng-message="email">*not a valid email*</div>
+        <div ng-message="number">*should be a number*</div>
+        <div ng-message="pattern">*must be a valid phone number*</div>
+        <div ng-message="maxlength">*too long*</div>
+    </script>
+    
     <div id="page-title" class="apply-gutter">
-        <h2>Registration <span><i>- Apply for a room</span></i></h1>
+        <h2>Registration <span><i>- Apply for a room</i></span></h2>
     </div>
     <div class="double-row">
         <div class="row">
             <div id="application-form-cell" class="form">
                 <h2 class="cell-title apply-gutter">Enter Details</h2>
                 <form id="application-form" class="content-cell" name="appForm">
+                    
                     <div>
-                        <label>Student Name<label>
+                        <label>Student Name</label>
                         <input type="text" name="studName" ng-model="applicant.name" required>
-                        <div ng-messages="appForm.studName.$error" ng-show="appForm.studName.$touched">
-                            <p ng-message="required">Name Required</p>
-                        </div>
+                        <div class="errorMess" ng-messages="appForm.studName.$error" ng-show="appForm.studName.$touched">
+								<div ng-messages-include="error-messages"></div>
+				        </div>
                     </div>
+                    
                     <div>
-                        <label>Register No<label>
+                        <label>Register No</label>
                         <input type="text" name="regNo" ng-model="applicant.regNo" required>
-                        <div ng-messages="appForm.regNo.$error" ng-show="appForm.regNo.$touched">
-                            <p ng-message="required">Registration number required.</p>
-                        </div>
+                        <div class="errorMess" ng-messages="appForm.regNo.$error" ng-show="appForm.regNo.$touched">
+								<div ng-messages-include="error-messages"></div>
+				        </div>
                     </div>
+                    
                     <div>
-                        <label>Semester<label>
-                        <input class = "form-control" type="number" name="sem" ng-model="applicant.semester" min="1" max="6" required>
-                        <div  ng-messages = "appForm.sem.$error" ng-show = "appForm.sem.$touched">
-                            <p ng-message="required">Required</p>
-                        </div>
+                        <label>Semester</label>
+                        <input class="form-control" type="number" name="sem" ng-model="applicant.semester" min="1" max="6" required>
+                        <div class="errorMess" ng-messages="appForm.sem.$error" ng-show="appForm.sem.$touched">
+								<div ng-messages-include="error-messages"></div>
+				        </div>
                     </div>
+                    
                     <div>
-                        <label>Year of Entry to Hostel<label>
-                        <input class = "form-control" type = "number" name="year" ng-model="applicant.entryYear" min="2000" max="2014" required>
-                        <div  ng-messages = "appForm.year.$error" ng-show = "appForm.year.$touched">
-                            <p ng-message="required">Required</p>
-                        </div>
+                        <label>Year of Entry to Hostel</label>
+                        <input class="form-control" type="number" name="year" ng-model="applicant.entryYear" min="2000" max="2016" required>
+                        <div class="errorMess" ng-messages="appForm.year.$error" ng-show="appForm.year.$touched">
+								<div ng-message="pattern">*not a valid year*</div><div ng-messages-include="error-messages"></div>
+				        </div>
                     </div>
+                    
                     <div>
-                        <label>Religion<label>
+                        <label>Religion</label>
                         <select name="reli" ng-model="applicant.religion" required>
                             <option value="Christian" selected>Christian</option>
-                            <option value="saab">Muslim</option>
-                            <option value="mercedes">Hindu</option>
-                            <option value="audi">Other</option>
+                            <option value="Mus">Muslim</option>
+                            <option value="Hin">Hindu</option>
+                            <option value="Oth">Other</option>
                         </select>
-                        <div  ng-messages = "appForm.reli.$error" ng-show = "appForm.reli.$touched">
-                            <p ng-message="required">Required</p>
-                        </div>
+                        <div class="errorMess" ng-messages="appForm.reli.$error" ng-show="appForm.reli.$touched">
+								<div ng-messages-include="error-messages"></div>
+				        </div>
                         <div  ng-show="applicant.religion.toUpperCase() == 'CHRISTIAN'">
-                            <label> Catholic <label>
-                            <input class = "form-control" type = "checkbox" ng-model = "applicant.isCatholic">
+                            <label> Catholic </label>
+                            <input class="form-control" type="checkbox" ng-model="applicant.isCatholic">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label>Caste</label>
+                        <input class="form-control" type="text" name="caste" ng-model="applicant.caste">
+                    </div>
+                    
+                    <div>
+                        <label>Blood Group</label>
+                        <input class="form-control" type="text" name="bg" ng-model="applicant.bloodGroup" required>
+                        <div class="errorMess" ng-messages="appForm.bg.$error" ng-show="appForm.bg.$touched">
+								<div ng-messages-include="error-messages"></div>
+				        </div>
+                    </div>
+                    
+                    <div>
+                        <label>Mobile No</label>
+                        <input class="form-control" type="text" name="phNo" ng-model="applicant.phNo" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" required>
+                        <div class="errorMess" ng-messages="appForm.phNo.$error" ng-show="appForm.phNo.$touched">
+								<div ng-messages-include="error-messages"></div>
+				        </div>
+                    </div>
+                    
+                    <div>
+                        <label>Date of Birth</label>
+                        <input class="form-control" type="date" name="dob" ng-model="applicant.dob" required>
+                        <div class="errorMess" ng-messages="appForm.dob.$error" ng-show="appForm.dob.$touched">
+								<div ng-messages-include="error-messages"></div>
+				        </div>
+                    </div>
+                    
+                    <div>
+                        <label>Email</label>
+                        <input class="form-control" type="email" name="email" ng-model="applicant.email" required>
+                        <div class="errorMess" ng-messages="appForm.email.$error" ng-show="appForm.email.$touched">
+								<div ng-messages-include="error-messages"></div>
+						</div>
+                    </div>
+                    
+                    <div>
+                        <label>Father's Name</label>
+                        <input class="form-control" type="text" name="fatherName" ng-model="applicant.otherDetails.father.name" required>
+                        <div class="errorMess" ng-messages="appForm.fatherName.$error" ng-show="appForm.fatherName.$touched">
+                                <div ng-messages-include="error-messages"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label>Occupation</label>
+                        <input class="form-control" type="text" name="fatherOccu" ng-model="applicant.otherDetails.father.occupation" required>
+                        <div class="errorMess" ng-messages="appForm.fatherOccu.$error" ng-show="appForm.fatherOccu.$touched">
+                                <div ng-messages-include="error-messages"></div>
                         </div>
                     </div>
                     <div>
-                        <label>Caste<label>
-                        <input class = "form-control" type = "text" name="caste" ng-model = "applicant.caste">
-                    </div>
-                    <div>
-                        <label>Blood Group<label>
-                        <input class = "form-control" type = "text" name="bg" ng-model = "applicant.bloodGroup" required>
-                        <div  ng-messages = "appForm.bg.$error" ng-show = "appForm.bg.$touched">
-                            <p ng-message="required">Required</p>
-                        </div>
-
-                    </div>
-                    <div>
-                        <label>Mobile No<label>
-                        <input class = "form-control" type = "text" name="phNo" ng-model = "applicant.phNo" ng-pattern = "/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" required>
-                        <div  ng-messages = "appForm.phNo.$error" ng-show = "appForm.phNo.$touched">
-                            <p ng-message="required">Required</p>
-                            <p ng-message="pattern">Wrong format</p>
-                        </div>
-
-                    </div>
-                    <div>
-                        <label>Date of Birth<label>
-                        <input class = "form-control" type = "date" name="dob" ng-model = "applicant.dob" required>
-                        <div  ng-messages = "appForm.dob.$error" ng-show = "appForm.dob.$touched">
-                            <p ng-message="required">Required</p>
-                        </div>
-
-                    </div>
-                    <div>
-                        <label>Email<label>
-                        <input class = "form-control" type = "email" name="email" ng-model = "applicant.email" required>
-                        <div  ng-messages = "appForm.email.$error" ng-show = "appForm.email.$touched">
+                        <label>Email</label>
+                        <input class="form-control" type="email" name="atherEmail" ng-model="applicant.otherDetails.father.email">
+                        <div  ng-messages="appForm.fatherEmail.$error" ng-show="appForm.fatherEmail.$touched">
                             <p ng-message="required">Required</p>
                         </div>
                     </div>
+                    
                     <div>
-                        <label>Father's Name<label>
-                        <input class = "form-control" type = "text" name="fatherName" ng-model = "applicant.otherDetails.father.name" required>
-                        <div  ng-messages = "appForm.fatherName.$error" ng-show = "appForm.fatherName.$touched">
-                            <p ng-message="required">Required</p>
+                        <label>Mother's Name</label>
+                        <input class="form-control" type="text" name="motherName" ng-model="applicant.otherDetails.mother.name" required>
+                        <div class="errorMess" ng-messages="appForm.motherName.$error" ng-show="appForm.motherName.$touched">
+                                <div ng-messages-include="error-messages"></div>
                         </div>
                     </div>
+                    
                     <div>
-                        <label>Occupation<label>
-                        <input class = "form-control" type = "text" name="fatherOccu" ng-model = "applicant.otherDetails.father.occupation" required>
-                        <div  ng-messages = "appForm.fatherOccu.$error" ng-show = "appForm.fatherOccu.$touched">
-                            <p ng-message="required">Required</p>
+                        <label>Occupation</label>
+                        <input class="form-control" type="text" name="motherOccu" ng-model="applicant.otherDetails.mother.occupation" required>
+                        <div class="errorMess" ng-messages="appForm.motherOccu.$error" ng-show="appForm.motherOccu.$touched">
+                                <div ng-messages-include="error-messages"></div>
                         </div>
                     </div>
+                    
                     <div>
-                        <label>Email<label>
-                        <input class = "form-control" type = "email" name="atherEmail" ng-model = "applicant.otherDetails.father.email">
-                        <div  ng-messages = "appForm.fatherEmail.$error" ng-show = "appForm.fatherEmail.$touched">
-                            <p ng-message="required">Required</p>
-                        </div>
-                    </div>
-                    <div>
-                        <label>Mother's Name<label>
-                        <input class = "form-control" type = "text" name="motherName" ng-model = "applicant.otherDetails.mother.name" required>
-                        <div  ng-messages = "appForm.motherName.$error" ng-show = "appForm.motherName.$touched">
-                            <p ng-message="required">Required</p>
-                        </div>
-                    </div>
-                    <div>
-                        <label>Occupation<label>
-                        <input class = "form-control" type = "text" name="motherOccu" ng-model = "applicant.otherDetails.mother.occupation" required>
-                        <div  ng-messages = "appForm.motherOccu.$error" ng-show = "appForm.motherOccu.$touched">
-                            <p ng-message="required">Required</p>
-                        </div>
-                    </div>
-                    <div>
-                        <label>Email<label>
-                        <input class = "form-control" type = "email" name="motherEmail" ng-model = "applicant.otherDetails.mother.email">
-                        <div  ng-messages = "appForm.motherEmail.$error" ng-show = "appForm.motherEmail.$touched">
-                            <p ng-message="required">Required</p>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label>Mother's Mobile No<label>
-                        <input class = "form-control" type = "number" name="permPhNo" ng-model = "applicant.otherDetails.phNo" ng-pattern = "/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" required>
-                        <div  ng-messages = "appForm.permPhNo.$error" ng-show = "appForm.permPhNo.$touched">
-                            <p ng-message="required">Required</p>
-                            <p ng-message="pattern">Wrong format</p>
+                        <label>Email</label>
+                        <input class="form-control" type="email" name="motherEmail" ng-model="applicant.otherDetails.mother.email">
+                        <div class="errorMess" ng-messages="appForm.fatherOccu.$error" ng-show="appForm.fatherOccu.$touched">
+                                <div ng-messages-include="error-messages"></div>
                         </div>
                     </div>
 
                     <div>
-                        <label>Permanent Address<label>
-                        <textarea class = "form-control" type = "text" name="permAddress" ng-model = "applicant.otherDetails.address" required></textarea>
-                        <div  ng-messages = "appForm.permAddress.$error" ng-show = "appForm.permAddress.$touched">
-                            <p ng-message="required">Required</p>
+                        <label>Parent's Mobile No</label>
+                        <input class="form-control" type="number" name="permPhNo" ng-model="applicant.otherDetails.phNo" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" required>
+                        <div class="errorMess" ng-messages="appForm.permPhNo.$error" ng-show="appForm.permPhNo.$touched">
+                                <div ng-messages-include="error-messages"></div>
                         </div>
-
                     </div>
 
                     <div>
-                        <label>City<label>
-                        <input class = "form-control" type = "text" name="permCity" ng-model = "applicant.otherDetails.city" required>
-                        <div  ng-messages = "appForm.permCity.$error" ng-show = "appForm.permCity.$touched">
-                            <p ng-message="required">Required</p>
+                        <label>Permanent Address</label>
+                        <textarea class="form-control" type="text" name="permAddress" ng-model="applicant.otherDetails.address" required></textarea>
+                        <div class="errorMess" ng-messages="appForm.permAddress.$error" ng-show="appForm.permAddress.$touched">
+                                <div ng-messages-include="error-messages"></div>
                         </div>
-
                     </div>
 
                     <div>
-                        <label>State<label>
-                        <input class = "form-control" type = "text" name="permState" ng-model = "applicant.otherDetails.state" required>
-                        <div  ng-messages = "appForm.permState.$error" ng-show = "appForm.permState.$touched">
-                            <p ng-message="required">Required</p>
+                        <label>City</label>
+                        <input class="form-control" type="text" name="permCity" ng-model="applicant.otherDetails.city" required>
+                        <div class="errorMess" ng-messages="appForm.permCity.$error" ng-show="appForm.permCity.$touched">
+                                <div ng-messages-include="error-messages"></div>
                         </div>
-
                     </div>
 
                     <div>
-                        <label>Pin Code<label>
-                        <input class = "form-control" type = "text" name="permPincode" ng-model = "applicant.otherDetails.pinCode" required>
-                        <div  ng-messages = "appForm.permPincode.$error" ng-show = "appForm.permPincode.$touched">
-                            <p ng-message="required">Required</p>
+                        <label>State</label>
+                        <input class="form-control" type="text" name="permState" ng-model="applicant.otherDetails.state" required>
+                        <div class="errorMess" ng-messages="appForm.permState.$error" ng-show="appForm.permState.$touched">
+                                <div ng-messages-include="error-messages"></div>
                         </div>
-
                     </div>
 
                     <div>
-                        <label>Local Guardian's Name<label>
-                        <input class = "form-control" type = "text" name="guardName" ng-model = "applicant.otherDetails.guardian.name">
-                        <div  ng-messages = "appForm.guardName.$error" ng-show = "appForm.guardName.$touched">
-                            <p ng-message="required">Required</p>
+                        <label>Pin Code</label>
+                        <input class="form-control" type="text" name="permPincode" ng-model="applicant.otherDetails.pinCode" required>
+                        <div class="errorMess" ng-messages="appForm.permPincode.$error" ng-show="appForm.permPincode.$touched">
+                                <div ng-messages-include="error-messages"></div>
                         </div>
+                    </div>
 
+                    <div>
+                        <label>Local Guardian's Name</label>
+                        <input class="form-control" type="text" name="guardName" ng-model="applicant.otherDetails.guardian.name">
+                        <div class="errorMess" ng-messages="appForm.guardName.$error" ng-show="appForm.guardName.$touched">
+                                <div ng-messages-include="error-messages"></div>
+                        </div>
                     </div>
 
                     <div>
                         <label>Occupation</label>
-                        <input class = "form-control" type = "text" name="guardOccu" ng-model = "applicant.otherDetails.guardian.occupation">
-                        <div  ng-messages = "appForm.guardOccu.$error" ng-show = "appForm.guardOccu.$touched">
-                            <p ng-message="required">Required</p>
+                        <input class="form-control" type="text" name="guardOccu" ng-model="applicant.otherDetails.guardian.occupation">
+                        <div class="errorMess" ng-messages="appForm.guardOccu.$error" ng-show="appForm.guardOccu.$touched">
+                                <div ng-messages-include="error-messages"></div>
                         </div>
                     </div>
 
                     <div>
-                        <label>Email<label>
-                        <input class = "form-control" type = "email" name="guardEmail" ng-model = "applicant.otherDetails.guardian.email">
-                        <div  ng-messages = "appForm.guardEmail.$error" ng-show = "appForm.guardEmail.$touched">
-                            <p ng-message="required">Required</p>
+                        <label>Email</label>
+                        <input class="form-control" type="email" name="guardEmail" ng-model="applicant.otherDetails.guardian.email">
+                        <div class="errorMess" ng-messages="appForm.guardEmail.$error" ng-show="appForm.guardEmail.$touched">
+                                <div ng-messages-include="error-messages"></div>
                         </div>
                     </div>
 
                     <div>
-                        <label>Mobile No<label>
-                        <input class = "form-control" type = "text" name="guardPhNo" ng-model = "applicant.otherDetails.guardian.phNo">
-                        <div  ng-messages = "appForm.guardPhNo.$error" ng-show = "appForm.guardPhNo.$touched">
-                            <p ng-message="required">Required</p>
+                        <label>Mobile No</label>
+                        <input class="form-control" type="number" name="guardPhNo" ng-model="applicant.otherDetails.guardian.phNo" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/">
+                        <div class="errorMess" ng-messages="appForm.guardPhNo.$error" ng-show="appForm.guardPhNo.$touched">
+                                <div ng-messages-include="error-messages"></div>
                         </div>
                     </div>
 
                     <div>
-                        <label>Address<label>
-                        <textarea class = "form-control" type = "text" name="guardAddress" ng-model = "applicant.otherDetails.guardian.address"></textarea>
-                        <div  ng-messages = "appForm.guardAddress.$error" ng-show = "appForm.guardAddress.$touched">
-                            <p ng-message="required">Required</p>
+                        <label>Address</label>
+                        <textarea class="form-control" type="text" name="guardAddress" ng-model="applicant.otherDetails.guardian.address"></textarea>
+                        <div class="errorMess" ng-messages="appForm.guardAddress.$error" ng-show="appForm.guardAddress.$touched">
+                                <div ng-messages-include="error-messages"></div>
                         </div>
                     </div>
 
                     <div>
-                        <label>City<label>
-                        <input class = "form-control" type = "text" name="guardCity" ng-model = "applicant.otherDetails.guardian.city">
-                        <div  ng-messages = "appForm.guardCity.$error" ng-show = "appForm.guardCity.$touched">
-                            <p ng-message="required">Required</p>
+                        <label>City</label>
+                        <input class="form-control" type="text" name="guardCity" ng-model="applicant.otherDetails.guardian.city">
+                        <div class="errorMess" ng-messages="appForm.guardCity.$error" ng-show="appForm.guardCity.$touched">
+                                <div ng-messages-include="error-messages"></div>
                         </div>
                     </div>
 
                     <div>
-                        <label>State<label>
-                        <input class = "form-control" type = "text" name="guardState" ng-model = "applicant.otherDetails.guardian.state">
-                        <div  ng-messages = "appForm.guardState.$error" ng-show = "appForm.guardState.$touched">
-                            <p ng-message="required">Required</p>
+                        <label>State</label>
+                        <input class="form-control" type="text" name="guardState" ng-model="applicant.otherDetails.guardian.state">
+                        <div class="errorMess" ng-messages="appForm.guardState.$error" ng-show="appForm.guardState.$touched">
+                                <div ng-messages-include="error-messages"></div>
                         </div>
                     </div>
 
                     <div>
-                        <label>Pin Code<label>
-                        <input class = "form-control" type = "text" name="guardPincode" ng-model = "applicant.otherDetails.guardian.pinCode">
-                        <div  ng-messages = "appForm.guardPincode.$error" ng-show = "appForm.guardPincode.$touched">
-                            <p ng-message="required">Required</p>
+                        <label>Pin Code</label>
+                        <input class="form-control" type="text" name="guardPincode" ng-model="applicant.otherDetails.guardian.pinCode">
+                        <div class="errorMess" ng-messages="appForm.guardPincode.$error" ng-show="appForm.guardPincode.$touched">
+                                <div ng-messages-include="error-messages"></div>
                         </div>
                     </div>
                 </form>
